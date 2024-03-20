@@ -16,6 +16,18 @@ function readyP1() {
     const numOfGridIt = size ** 2
     gridEl.innerHTML = ""
 
+    const bomb = []
+    while(bomb.length < 16){
+       const numBomb = parseInt(Math.random() * numOfGridIt) + 1
+       if(bomb.includes(numBomb) === false){
+        bomb.push(numBomb)
+       }
+       console.log(bomb, numBomb, bomb.length, size)
+
+
+    }
+
+
     gridEl.style.gridTemplateColumns = `repeat(${size}, 1fr)`
 
     for (let i = 0; i < numOfGridIt; i++) {
@@ -40,7 +52,15 @@ function readyP1() {
             // console.log("left", {x: x - 1 , y: y})
             // console.log("right", {x: x + 1 , y: y})
             
-            gridItem.classList.toggle('bg-blue')
+            
+            if(bomb.includes(num)){
+                gridItem.classList.toggle('bg-red')
+                console.log("è una bomba")
+                alert("Hai perso!!!")
+            }else{
+                gridItem.classList.toggle('bg-dark-blue') 
+                console.log("")
+            }   
         }
         )
     }
