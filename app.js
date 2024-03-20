@@ -28,6 +28,7 @@ function readyP1() {
 
 
     }
+   const scoreMax = numOfGridIt - bomb.length
 
 
     gridEl.style.gridTemplateColumns = `repeat(${size}, 1fr)`
@@ -49,16 +50,22 @@ function readyP1() {
         gridItem.addEventListener('click', function () {
             console.log('click sulla casella', num)
            if(score.includes(num) === false){
-                score.push(num)
+                
                 if (bomb.includes(num)) {
                     gridItem.classList.add('bg-red')
                     console.log("è una bomba")
-                    alert("Hai perso!!!",)
+                    alert(`Hai perso!!!, punteggio${score.length}`)
+
                 } else {
+                    score.push(num)
                     gridItem.classList.add('bg-dark-blue')
                     console.log("non è una bomba")
                     
                     console.log(score.length, "punti")
+                }
+
+                if( score.length === scoreMax){
+                    alert(`HAI VINTO!!! ${score.length}`)
                 }
                 
             }
@@ -76,6 +83,9 @@ function readyP1() {
         )
     }
 }
+
+
+
 
 // function getCoordinates(index, size) {
 //     return {
